@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/rims', function () {
+    // Make DB query for getting all rims
+    return view('rims');
+});
+
+Route::get('/tyres', function () {
+    // Make DB query for getting all tyres
+    return view('tyres');
+});
