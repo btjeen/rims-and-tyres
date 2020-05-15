@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        @include('partials.includes')
+        @include('partials.header-includes')
         <title>Rims And Tyres - Frontpage</title>
     </head>
     <body>
     @include('partials.navigation')
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
