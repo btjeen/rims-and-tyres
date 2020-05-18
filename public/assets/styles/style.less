@@ -1,0 +1,99 @@
+/* Color variables */
+@gray-light:    #fefefe;
+@gray:          #cccccc;
+@gray-dark:     #636b6f;
+
+@orange-light:  #ff900d;
+@orange:        #f26c21;
+
+
+/* Global resets */
+html, body {
+    background-color: @gray-light;
+    color: @gray-dark;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 200;
+    min-height: 100vh;
+    margin: 0;
+} h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1em;
+} h1 {
+    font-size: 2em;
+} h2 {
+    font-size: 1.6em;
+} h3 {
+    font-size: 1.4em;
+} h4 {
+    font-size: 1.2em;
+} a {
+    color: @orange;
+    &:hover {
+        color: @orange-light;
+    }
+}
+
+/* Navbar styling */
+nav {
+    border-bottom: 1px solid @gray;
+    position: fixed;
+    min-height: 65px;
+    width: 100%;
+    z-index: 10;
+    background-color: @gray-light;
+}
+#navbar-identity-title {
+    font-size: 2.4em;
+}
+#navbar-identity-logo {
+    height: 3em;
+    transform: rotate(90deg);
+}
+#navbar-menu {
+    text-align: right;
+}
+#navbar-menu-button {
+    font-size: 2.6em;
+    display: inline-block;
+    border: 1px solid @gray;
+    line-height: 50px;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+}
+#navbar-toggle {
+    font-size: 1.4em;
+    text-align: right;
+    color: @orange;
+    li {
+        margin: .4rem 0 0 0;
+        &:first-of-type {
+            margin-top: 2rem;
+        }
+        &:last-of-type {
+            margin-bottom: 2rem;
+        }
+    }
+    a {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+/* Content styling*/
+.page-content {
+    padding-top: 105px;
+}
+
+/* Footer styling */
+footer {
+    background-color:  @gray
+}
+
+
+/* Custom reusable classes */
+.pointer-no-highlight {
+    cursor: pointer;
+    user-select: none; /* Non-prefixed version, currently */
+}

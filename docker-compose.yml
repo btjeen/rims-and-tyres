@@ -54,6 +54,21 @@ services:
     networks:
       - app-network
 
+  #PhpMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+    restart: unless-stopped
+    links:
+      - db
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
+
+
 #Docker Networks
 networks:
   app-network:
