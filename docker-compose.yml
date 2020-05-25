@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: composer
+    image: php/7.2-fpm
     container_name: app
     restart: unless-stopped
     tty: true
@@ -19,7 +19,7 @@ services:
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
-apt
+
   #Nginx Service
   webserver:
     image: nginx:alpine
@@ -59,14 +59,15 @@ apt
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     environment:
-      - PMA_ARBITRARY=1
-    restart: unless-stopped
-    links:
-      - db
+      PMA_HOST: db
+      PMA_PORT: 3306
+    restart: always
     ports:
       - 8080:80
     volumes:
       - /sessions
+    networks:
+      - app-network
 
 
 #Docker Networks
