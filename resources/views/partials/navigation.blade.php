@@ -2,11 +2,11 @@
 <nav id="navbar">
     <div class="container">
         <div class="row">
-            <div id="navbar-identity" class="col-8 p-2 d-flex align-items-center">
+            <div id="navbar-identity" class="col-8 d-flex align-items-center">
                 <div id="navbar-identity-title" class="pr-2">
                     Rims and Tyres
                 </div>
-                <img id="navbar-identity-logo" class="pr-1 pl-1" src="{{ url('/assets/images/rat_logo.svg') }}">
+                <img id="navbar-identity-logo" class="pr-1 pl-1 rotate" src="{{ url('/assets/images/rat_logo.svg') }}">
             </div>
             <!-- /#navbar-identity -->
 
@@ -15,7 +15,7 @@
             </div>
             <!-- /#navbar-basket -->
 
-            <div id="navbar-menu" class="col-2 p-2">
+            <div id="navbar-menu" class="col-2">
                 <div id="navbar-menu-button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-toggle" aria-expanded="false" aria-controls="navbar">
                     <span class="pointer-no-highlight">☰</span>
                     <span class="sr-only">Toggle navigation</span>

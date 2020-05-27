@@ -57,7 +57,6 @@ nav {
 }
 #navbar-identity-logo {
     height: 3em;
-    transform: rotate(90deg);
 }
 #navbar-menu {
     text-align: right;
@@ -105,5 +104,22 @@ footer {
 /* Custom reusable classes */
 .pointer-no-highlight {
     cursor: pointer;
-    user-select: none; /* Non-prefixed version, currently */
+    user-select: none;
+}
+
+.rotate {
+    animation: rotation 8s infinite linear;
+}
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+.header-line-under {
+    padding: 0 1rem;
+    border-bottom: 1px solid @orange;
 }
