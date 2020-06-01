@@ -18,13 +18,17 @@ html, body {
     margin: 0;
 } body {
     &::-webkit-scrollbar {
-        width: 0.4rem;
+        width: 0.5rem;
     }
     &::-webkit-scrollbar-track {
         background: @gray-dark;
     }
     &::-webkit-scrollbar-thumb {
         background: @orange;
+        &:hover {
+            background: @orange-light;
+            cursor: grab;
+        }
     }
 } h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1em;
@@ -40,6 +44,18 @@ html, body {
     color: @orange;
     &:hover {
         color: @orange-light;
+    }
+}
+
+/* Bootstrap resets */
+.btn-primary {
+    color: @gray-light;
+    background-color:  @orange;
+    border-color:  @orange;
+    &:hover {
+        color: @gray-light;
+        background-color:  @orange-light;
+        border-color:  @orange-light;
     }
 }
 
@@ -117,9 +133,4 @@ footer {
     to {
         transform: rotate(359deg);
     }
-}
-
-.header-line-under {
-    padding: 0 1rem;
-    border-bottom: 1px solid @orange;
 }
