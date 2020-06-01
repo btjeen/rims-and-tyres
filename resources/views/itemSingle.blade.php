@@ -5,16 +5,19 @@
 @endsection
 
 @section('content')
-    <div class="row">
+
+    <!-- Header segment start -->
+    <div class="row pt-4">
         <div class="col-12">
             <h1>{{ $item['title'] }}</h1>
         </div>
     </div>
+    <!-- Header segment end -->
+
+    <!-- Product info start -->
     <div class="row pb-4">
         <div class="col-12 col-md-8">
-            <div style="width: 100%; height: 0; padding-bottom: 80%; background: #dedede; position: relative;">
-                <p style="font-size: 5rem; width: 100%; text-align: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -45%);">Placeholder image</p>
-            </div>
+            <img class="single-item-image" src="{{ $item['image'] }}" alt="{{ $item['title'] }}"/>
         </div>
         <div class="col-12 col-md-4">
             <h3>Specifications</h3>
@@ -58,7 +61,16 @@
                     @endforeach
                 @endif
             </table>
+            <hr />
+            <p>{{ $item['description'] }}</p>
         </div>
     </div>
-        THIS PAGE SHOWS THE SPECIFICATIONS OF ITEM ID {{ $item['id'] }}
+    <!-- Product info end -->
+
+    <!-- Related items start-->
+    <div class="row pb-4">
+        <!-- TODO: Output related items (be it tyre, rims or ...) -->
+    </div>
+    <!-- Related items end -->
+
 @endsection

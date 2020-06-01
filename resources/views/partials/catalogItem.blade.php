@@ -1,6 +1,8 @@
 <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
     <div class="card p-3 w-100">
-        <img class="card-img-top" src="{{ $item['image'] }}" alt="{{ $item['title'] }}"/>
+        <a href="/items/show/{{  $item['id'] }}">
+            <img class="card-img-top" src="{{ $item['image'] }}" alt="{{ $item['title'] }}"/>
+        </a>
         @if(isset(json_decode($item['extras'], true)['season']))
             <img class="position-absolute" src="/assets/images/{{ json_decode($item['extras'], true)['season'] }}.png" alt="{{ ucfirst(json_decode($item['extras'], true)['season']) }}"/>
         @endif
