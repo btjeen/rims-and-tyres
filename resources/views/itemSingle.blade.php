@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+    <div class="row">
+        <div class="col-12">
+            <h1>{{ $item['title'] }}</h1>
+        </div>
+    </div>
     <div class="row pb-4">
         <div class="col-12 col-md-8">
             <div style="width: 100%; height: 0; padding-bottom: 80%; background: #dedede; position: relative;">
@@ -12,9 +17,8 @@
             </div>
         </div>
         <div class="col-12 col-md-4">
-            <h1>{{ $item['title'] }}</h1>
-            <p class="card-text">Specifications</p>
-            <table class="specification-table w-100">
+            <h3>Specifications</h3>
+            <table class="w-100">
                 <!-- Rim data layout -->
                 @if($item['type'] === 'rim')
                     <tr>

@@ -30,7 +30,7 @@
                         <div id="navbar-identity-title" class="pr-2">
                             Rims and Tyres
                         </div>
-                        <img id="navbar-identity-logo" class="pr-1 pl-1 rotate" src="{{ url('/assets/images/rat_logo.svg') }}">
+                        <img id="navbar-identity-logo" class="pr-1 pl-1 rotate d-none d-sm-block" src="{{ url('/assets/images/rat_logo.svg') }}">
                     </div>
                     <!-- /#navbar-identity -->
 

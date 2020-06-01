@@ -69,16 +69,19 @@ nav {
     background-color: @gray-light;
 }
 #navbar-identity-title {
-    font-size: 2.4em;
+    font-size: 2.4rem;
+    @media(max-width: 576px) {
+        font-size: 1.8rem;
+    }
 }
 #navbar-identity-logo {
-    height: 3em;
+    height: 3rem;
 }
 #navbar-menu {
     text-align: right;
 }
 #navbar-menu-button {
-    font-size: 2.6em;
+    font-size: 2.6rem;
     display: inline-block;
     border: 1px solid @gray;
     line-height: 50px;
@@ -87,7 +90,7 @@ nav {
     width: 50px;
 }
 #navbar-toggle {
-    font-size: 1.4em;
+    font-size: 1.4rem;
     text-align: right;
     color: @orange;
     li {
