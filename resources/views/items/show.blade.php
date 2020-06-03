@@ -16,10 +16,10 @@
 
     <!-- Product info start -->
     <div class="row pb-4">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-6">
             <img class="single-item-image" src="{{ $item['image'] }}" alt="{{ $item['title'] }}"/>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-6">
             <h3>Specifications</h3>
             <table class="w-100">
                 <!-- Rim data layout -->

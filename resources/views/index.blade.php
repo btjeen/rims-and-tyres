@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="row pb-4">
-        @foreach($recommendedRims as $item)
+        @foreach($recommendedTyres as $item)
             @include('partials.catalogItem')
         @endforeach
     </div>

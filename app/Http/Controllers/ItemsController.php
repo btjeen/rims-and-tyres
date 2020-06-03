@@ -7,7 +7,16 @@ use App\Item;
 
 class ItemsController extends Controller
 {
-    public function index($type){
+    public function  index(){
+        // https://keratech.dk/upload/Export/aluxperten/export-alu.csv
+
+        $recommendedRims = Item::where('type', 'rim')->take(4)->get();
+        $recommendedTyres = Item::where('type', 'tyre')->take(4)->get();
+
+        return view('index', ['recommendedRims' => $recommendedRims, 'recommendedTyres' => $recommendedTyres]);
+    }
+
+    public function list($type){
         // https://keratech.dk/upload/Export/aluxperten/export-alu.csv
 
         // Get all items matching specified type
@@ -19,13 +28,13 @@ class ItemsController extends Controller
             $items = Item::all();
         }
 
-        return view('itemList', ['items' => $items]);
+        return view('list', ['items' => $items]);
     }
 
-    public function Show($id) {
+    public function show($id) {
         // Make query for getting single item
         $item = Item::where('id', $id)->first();
 
-        return view('itemSingle', ['item' => $item]);
+        return view('show', ['item' => $item]);
     }
 }
