@@ -44,7 +44,7 @@
             <h3>Recommended rims</h3>
         </div>
     </div>
-    <div class="row pb-4">
+    <div class="row">
         @foreach($recommendedRims as $item)
             @include('partials.catalogItem')
         @endforeach
@@ -57,7 +57,7 @@
             <h3>Recommended tyres</h3>
         </div>
     </div>
-    <div class="row pb-4">
+    <div class="row">
         @foreach($recommendedTyres as $item)
             @include('partials.catalogItem')
         @endforeach

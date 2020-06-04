@@ -28,13 +28,13 @@ class ItemsController extends Controller
             $items = Item::all();
         }
 
-        return view('list', ['items' => $items]);
+        return view('items.list', ['items' => $items]);
     }
 
     public function show($id) {
         // Make query for getting single item
         $item = Item::where('id', $id)->first();
 
-        return view('show', ['item' => $item]);
+        return view('items.show', ['item' => $item]);
     }
 }

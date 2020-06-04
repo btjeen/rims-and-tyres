@@ -1,5 +1,5 @@
-<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-    <div class="card p-3 w-100">
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+    <div class="card p-3 mb-4 w-100">
         <a href="/items/show/{{  $item['id'] }}">
             <img class="card-img-top" src="{{ $item['image'] }}" alt="{{ $item['title'] }}"/>
         </a>
