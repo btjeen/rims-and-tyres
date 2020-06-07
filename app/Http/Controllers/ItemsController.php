@@ -7,7 +7,7 @@ use App\Item;
 
 class ItemsController extends Controller
 {
-    public function  index(){
+    public function index(){
         // https://keratech.dk/upload/Export/aluxperten/export-alu.csv
 
         $recommendedRims = Item::where('type', 'rim')->take(4)->get();

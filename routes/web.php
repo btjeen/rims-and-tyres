@@ -19,4 +19,4 @@ Route::get('/items/{type}', 'ItemsController@list');
 Route::get('/items/show/{id}', 'ItemsController@show');
 
 // Admin routes
-Route::get('/items/create/{id}', 'ItemsController@create');
+Route::get('/admin', 'AdminsController@index');

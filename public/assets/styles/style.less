@@ -58,6 +58,11 @@ html, body {
         border-color:  @orange-light;
     }
 }
+.tab-content {
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
 
 /* Navbar styling */
 nav {
@@ -76,6 +81,9 @@ nav {
 }
 #navbar-identity-logo {
     height: 3rem;
+}
+#navbar-home-logo {
+    height: 1.5rem;
 }
 #navbar-menu {
     text-align: right;
@@ -108,10 +116,14 @@ nav {
         }
     }
 }
+.navbar-to-website {
+    margin: 5px;
+}
 
 /* Content styling*/
 .page-content {
     padding-top: 105px;
+    min-height: calc(~'100vh - 75px');
 }
 
 .single-item-image {
@@ -123,6 +135,7 @@ nav {
 
 /* Footer styling */
 footer {
+    height: 75px;
     background-color:  @gray
 }
 
