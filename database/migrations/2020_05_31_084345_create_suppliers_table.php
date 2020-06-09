@@ -17,8 +17,9 @@ class CreateSuppliersTable extends Migration
             $table->id();
             $table->text('title')->default(NULL);
             $table->text('source')->default(NULL);
-            $table->boolean('rims');
-            $table->boolean('tyres');
+            $table->boolean('rims')->nullable();
+            $table->boolean('tyres')->nullable();
+            $table->boolean('accessories')->nullable();
             $table->timestamps();
         });
     }

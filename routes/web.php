@@ -20,3 +20,4 @@ Route::get('/items/show/{id}', 'ItemsController@show');
 
 // Admin routes
 Route::get('/admin', 'AdminsController@index');
+Route::post('/admin', 'AdminsController@import');

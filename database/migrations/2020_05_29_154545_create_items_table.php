@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->text('title')->default(NULL);
             $table->text('itemnumber')->default(NULL);
+            $table->integer('stock')->default(NULL);
             $table->text('brand')->default(NULL);
             $table->text('model')->default(NULL);
             $table->text('color')->default(NULL);
