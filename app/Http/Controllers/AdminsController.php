@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Item;
 use App\Supplier;
@@ -10,6 +9,21 @@ use App\RATCustom\ItemImport;
 
 class AdminsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index(){
         $tab = request('tab');
 
@@ -31,7 +45,7 @@ class AdminsController extends Controller
             'accessorySuppliers' => Supplier::where('accessories', '1')->get(),
         ];
 
-        return view('admins.adminIndex', [
+        return view('admins.dashboard', [
             'tab' => $tab,
             'globals' => $globals,
             'rims' => $rims,
@@ -47,6 +61,38 @@ class AdminsController extends Controller
 
         ItemImport::store_data($supplier, $type, $source);
 
-        return redirect('/admin');
+        return redirect('/admin?tab=import');
+    }
+
+    public function destroy() {
+        $supplierId = request('supplier');
+        $type = request('type');
+
+        // Unset item type of supplier
+        $supplier = Supplier::findOrFail($supplierId);
+
+        switch ($supplier) {
+            case $type === 'rim':
+                $supplier->rims = NULL;
+                break;
+            case $type === 'tyre':
+                $supplier->tyres = NULL;
+                break;
+            case $type === 'accessory':
+                $supplier->accessories = NULL;
+                break;
+        }
+
+        // Delete supplier if no types are present or save the changes
+        if ($supplier->rims === NULL && $supplier->tyres === NULL && $supplier->accessories === NULL) {
+            $supplier->delete();
+        } else {
+            $supplier->save();
+        }
+
+        // Delete items from the supplier of the specified type
+        Item::where('supplier', $supplierId)->where('type', $type)->delete();
+
+        return redirect('/admin?tab=delete');
     }
 }

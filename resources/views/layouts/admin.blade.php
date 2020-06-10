@@ -6,22 +6,36 @@
     </head>
 
     <body>
-
         <!-- Fixed navbar -->
         <nav id="navbar">
             <div class="container">
-                <div class="row pt-3 pb-3">
-                    <div id="navbar-identity" class="col-8 d-flex align-items-center">
+                <div class="row pt-3 pb-3 d-flex align-items-center justify-content-between">
+                    <div id="navbar-identity" class="d-flex align-items-center">
                         <div id="navbar-identity-title" class="pr-2">
                             Rims and Tyres
                         </div>
-                        <img id="navbar-identity-logo" class="pr-1 pl-1 rotate d-none d-sm-block" src="{{ url('/assets/images/rat_logo.svg') }}">
+                        <img id="navbar-identity-logo" class="pr-1 pl-1 rotate d-none d-sm-block" src="{{ url('/assets/images/rat_logo.svg') }}" alt="logo">
                     </div>
                     <!-- /#navbar-identity -->
 
+                    <!-- Authentication -->
+                    <div id="navbar-authentication" class="d-flex align-items-center">
+                        @auth
+                            <span>Hello {{ Auth::user()->name }}!</span>
+                                    <a class="btn" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <button type="button" class="btn">{{ __('Logout') }}</button>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+                        @else
+                            <a class="nav-link" href="{{ route('login') }}">
+                                <button type="button" class="btn">{{ __('Login') }}</button>
+                            </a>
+                        @endguest
+                    </div>
 
-                    <div id="navbar-menu" class="col-4 d-flex justify-content-end align-items-center">
-                        <a href="/">
+                    <div id="navbar-menu" class="d-flex justify-content-end align-items-center">
+                        <a href="{{ route('items.index') }}">
                             <span class="navbar-to-website">Return to website</span>
                             <img id="navbar-home-logo" class="pr-1 pl-1 d-none d-sm-inline-block" src="{{ url('/assets/images/home.svg') }}">
                         </a>

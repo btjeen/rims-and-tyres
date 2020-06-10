@@ -2,22 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 // Public routes
-Route::get('/', 'ItemsController@index');
-Route::get('/items/{type}', 'ItemsController@list');
-Route::get('/items/show/{id}', 'ItemsController@show');
+Route::get('/', 'ItemsController@index')->name('items.index');
+Route::get('/items/{type}', 'ItemsController@list')->name('items.list');
+Route::get('/items/show/{id}', 'ItemsController@show')->name('items.show');
 
 // Admin routes
-Route::get('/admin', 'AdminsController@index');
-Route::post('/admin', 'AdminsController@import');
+Route::get('/admin', 'AdminsController@index')->name('admin.index');
+Route::post('/admin', 'AdminsController@import')->name('admin.import');
+Route::delete('/admin', 'AdminsController@destroy')->name('admin.destroy');
+
+// Authentication routes
+Auth::routes([
+    'register'  => false,
+    'confirm'   => false,
+    'verify'   => false,
+    'email'     => false,
+    'reset'     => false,
+]);

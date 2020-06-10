@@ -1,19 +1,19 @@
 <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
     <div class="card p-3 mb-4 w-100">
-        <a href="/items/show/{{  $item['id'] }}">
-            <img class="card-img-top" src="{{ $item['image'] }}" alt="{{ $item['title'] }}"/>
+        <a href="{{  route('items.show', $item->id) }}">
+            <img class="card-img-top" src="{{ $item->image }}" alt="{{ $item->title }}"/>
         </a>
-        @if(isset(json_decode($item['extras'], true)['season']))
-            <img class="position-absolute" src="/assets/images/{{ json_decode($item['extras'], true)['season'] }}.png" alt="{{ ucfirst(json_decode($item['extras'], true)['season']) }}"/>
+        @if(isset(json_decode($item->extras, true)['season']))
+            <img class="position-absolute" src="/assets/images/{{ json_decode($item->extras, true)['season'] }}.png" alt="{{ ucfirst(json_decode($item->extras, true)['season']) }}"/>
         @endif
         <div class="card-body d-flex flex-column">
-            <h5 class="card-title">{{ $item['title'] }}</h5>
-            @if(isset($item['extras']))
+            <h5 class="card-title">{{ $item->title }}</h5>
+            @if(isset($item->extras))
                 <div class="mt-auto">
                     <p class="card-text">Specifications</p>
                     <table class="specification-table w-100">
                         <!-- Rim data layout -->
-                        @if($item['type'] === 'rim')
+                        @if($item->type === 'rim')
                                 <tr>
                                     <td>Diameter</td>
                                     <td>{{ json_decode($item['extras'], true)['diameter'] }}</td>
@@ -33,7 +33,7 @@
                                 <tr>
 
                         <!-- Tyre data layout -->
-                        @elseif($item['type'] === 'tyre')
+                        @elseif($item->type === 'tyre')
                             @foreach(json_decode($item['extras']) as $extraKey => $extraValue)
                                 <tr>
                                     <td>{{ strtoupper($extraKey) }}</td>

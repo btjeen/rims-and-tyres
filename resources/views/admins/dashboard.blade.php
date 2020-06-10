@@ -6,8 +6,8 @@
 
 @section('content')
     <div class="row">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs nav-justified col-12">
+        <!-- Nav tabs start -->
+        <ul class="nav nav-tabs nav-justified col-12 pr-0">
             <li class="nav-item">
                 <a class="nav-link {{ $tab ==  'stats' || $tab == '' ? 'active' : ''  }}" data-toggle="tab" href="#stats">Stats</a>
             </li>
@@ -18,25 +18,27 @@
                 <a class="nav-link {{ $tab ==  'delete' ? 'active' : ''  }}" data-toggle="tab" href="#delete">Delete</a>
             </li>
         </ul>
+        <!-- Nav tabs end -->
 
-        <!-- Tab panes -->
+        <!-- Tab panes start -->
         <div class="tab-content col-12 mb-4 p-4">
+            <!-- Stats tab start -->
             <div class="tab-pane container {{ $tab ==  'stats' || $tab == '' ? 'active' : 'fade'  }}" id="stats">
                 <div class="row">
-                    <div class="col-12 p-4 mb-4 mt-2 w-100">
+                    <div class="col-12">
                         <h2>Active items</h2>
                         <p>There are currently {{ $globals['itemCount'] }} active items on the website.</p>
+                        <hr class="pb-3"/>
                     </div>
                 </div>
-                <hr />
                 <div class="row">
-                    <div class="col-12 col-md-6 p-4 mb-4 mt-2">
+                    <div class="col-12 col-md-6">
                         <h2>Rims</h2>
                         <p>{{ $rims['itemCount'] }} of the active items are rims.</p>
                         <p>FOOBAR rims has been sold in the last 30 days.</p>
                         <p>The most in demand brand is FOOBAR</p>
                     </div>
-                    <div class="col-12 col-md-6 p-4 mb-4 mt-2">
+                    <div class="col-12 col-md-6">
                         <h2>Tyres</h2>
                         <p>{{ $tyres['itemCount'] }} of the active items are tyres.</p>
                         <p>FOOBAR tyres has been sold in the last 30 days.</p>
@@ -44,12 +46,16 @@
                     </div>
                 </div>
             </div>
+            <!-- Stats tab end -->
+
+            <!-- Import tab start -->
             <div class="tab-pane container {{ $tab ==  'import' ? 'active' : 'fade'  }}" id="import">
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <h2>Import items</h2>
                         <p>To import new items, or update existing items - simply fill in the form below!</p>
-                        <form action="/admin" method="POST">
+                        <hr class="pb-3"/>
+                        <form action="{{ route('admin.index') }}" method="POST">
                             @csrf
                             <label for="supplier">Supplier title (case sensitive)</label>
                             <br />
@@ -77,42 +83,88 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <h2>Currently active suppliers</h2>
+                        <hr class="pb-3"/>
                         <h4>Rim suppliers</h4>
                         @if(count($suppliers['rimSuppliers']) > 0)
                             @foreach($suppliers['rimSuppliers'] as $supplier)
-                                <p>{{ $supplier['title'] }}</p>
+                                @include('partials.supplierRow', ['type' => 'rims'])
                             @endforeach
                         @else
-                            <p>There are currently no existing rim suppliers</p>
-                            <p>You can add items by using the import function</p>
+                            <p class="p-2 pl-3 pr-3 m-1">There are currently no existing rim suppliers.</p>
+                            <p class="p-2 pl-3 pr-3 m-1">You can add items by using the import function.</p>
                         @endif
 
                         <h4 class="pt-4">Tyre suppliers</h4>
                         @if(count($suppliers['tyreSuppliers']) > 0)
                             @foreach($suppliers['tyreSuppliers'] as $supplier)
-                                <p>{{ $supplier['title'] }}</p>
+                                @include('partials.supplierRow', ['type' => 'tyres'])
                             @endforeach
                         @else
-                            <p>There are currently no existing tyre suppliers</p>
-                            <p>You can add items by using the import function</p>
+                            <p class="p-2 pl-3 pr-3 m-1">There are currently no existing tyre suppliers.</p>
+                            <p class="p-2 pl-3 pr-3 m-1">You can add items by using the import function.</p>
                         @endif
 
                         <h4 class="pt-4">Accessory suppliers</h4>
                         @if(count($suppliers['accessorySuppliers']) > 0)
                             @foreach($suppliers['accessorySuppliers'] as $supplier)
-                                <p>{{ $supplier['title'] }}</p>
+                                @include('partials.supplierRow', ['type' => 'accessories'])
                             @endforeach
                         @else
-                            <p>There are currently no existing accessory suppliers</p>
-                            <p>You can add items by using the import function</p>
+                            <p class="p-2 pl-3 pr-3 m-1">There are currently no existing accessory suppliers.</p>
+                            <p class="p-2 pl-3 pr-3 m-1">You can add items by using the import function.</p>
                         @endif
                     </div>
-                    </div>
+                </div>
             </div>
+            <!-- Import tab end -->
+
+            <!-- Delete tab start -->
             <div class="tab-pane container {{ $tab ==  'delete' ? 'active' : 'fade'  }}" id="delete">
-                <p>DELETION HERE!</p>
-                <p>TAB IS = {{$tab}}</p>
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Delete suppliers</h2>
+                        <p>To delete all the items of a certain type from a supplier, click the 'delete' button next to the name of the supplier</p>
+                        <hr class="pb-3"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 pb-2">
+                        <h4>Rim suppliers</h4>
+                        @if(count($suppliers['rimSuppliers']) > 0)
+                            @foreach($suppliers['rimSuppliers'] as $supplier)
+                                @include('partials.supplierRow', ['deleteAble' => true, 'type' => 'rim'])
+                            @endforeach
+                        @else
+                            <p class="p-2 pl-3 pr-3 m-1">There are currently no existing rim suppliers.</p>
+                            <p class="p-2 pl-3 pr-3 m-1">You can add items by using the import tab.</p>
+                        @endif
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 pb-2">
+                        <h4>Tyre suppliers</h4>
+                        @if(count($suppliers['tyreSuppliers']) > 0)
+                            @foreach($suppliers['tyreSuppliers'] as $supplier)
+                                @include('partials.supplierRow', ['deleteAble' => true, 'type' => 'tyre'])
+                            @endforeach
+                        @else
+                            <p class="p-2 pl-3 pr-3 m-1">There are currently no existing tyre suppliers.</p>
+                            <p class="p-2 pl-3 pr-3 m-1">You can add items by using the import tab.</p>
+                        @endif
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 pb-2">
+                        <h4>Accessory suppliers</h4>
+                        @if(count($suppliers['accessorySuppliers']) > 0)
+                            @foreach($suppliers['accessorySuppliers'] as $supplier)
+                                @include('partials.supplierRow', ['deleteAble' => true, 'type' => 'accessory'])
+                            @endforeach
+                        @else
+                            <p class="p-2 pl-3 pr-3 m-1">There are currently no existing accessory suppliers.</p>
+                            <p class="p-2 pl-3 pr-3 m-1">You can add items by using the import tab.</p>
+                        @endif
+                    </div>
+                </div>
             </div>
+            <!-- Delete tab end -->
         </div>
+        <!-- Tab panes start -->
     </div>
 @endsection

@@ -34,9 +34,9 @@
                         </div>
                         <div id="navbar-toggle" class="col-12 collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/items/rims">Rims</a></li>
-                                <li><a href="/items/tyres">Tyres</a></li>
+                                <li><a href="{{ route('items.index') }}">Home</a></li>
+                                <li><a href="{{ route('items.list', 'rims') }}">Rims</a></li>
+                                <li><a href="{{ route('items.list', 'tyres') }}">Tyres</a></li>
                             </ul>
                         </div><!--/.navbar-toggle -->
 
