@@ -78,7 +78,7 @@
                             <br />
                             <br />
                             <br />
-                            <input type="submit" value="Import items">
+                            <input type="submit" value="Import items" class="btn btn-primary">
                             <br />
                         </form>
                     </div>

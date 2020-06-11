@@ -1,7 +1,7 @@
 @extends('layouts.webshop')
 
 @section('title')
-    Rims
+    {{ ucfirst($title) }}
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
     <!-- Recommended rims start -->
     <div class="row">
         <div class="col-12 pt-4">
-            <h3>Recommended rims</h3>
+            <h3>Recommended {{ $title }}</h3>
         </div>
     </div>
     <div class="row">

@@ -67,10 +67,14 @@
     </div>
     <!-- Product info end -->
 
-    <!-- Related items start-->
-    <div class="row pb-4">
-        <!-- TODO: Output related items (be it tyre, rims or ...) -->
-    </div>
-    <!-- Related items end -->
+    @if(!empty($relatedItems))
+        <!-- Related items start-->
+        <div class="row pb-4">
+            @foreach($relatedItems as $item)
+                @include('partials.catalogItem')
+            @endforeach
+        </div>
+        <!-- Related items end -->
+    @endif
 
 @endsection

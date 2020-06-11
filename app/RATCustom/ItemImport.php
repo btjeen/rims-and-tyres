@@ -14,14 +14,14 @@ class ItemImport extends Model
         // Validate data
     }
 
-    public static function store_data($supplier, $type, $source) {
+    public static function store_data($supplierTitle, $type, $source) {
 
         // Update supplier if it exist, otherwise create a new one with the given values
-        if (Supplier::select('id')->where('title', $supplier)->exists()){
-            $supplierId = Supplier::where('title', $supplier)->first()->value('id');
+        if (Supplier::select('id')->where('title', $supplierTitle)->exists()){
+            $supplierId = Supplier::where('title', $supplierTitle)->first()->value('id');
         } else {
             $newSupplier = new Supplier();
-            $newSupplier->title = $supplier;
+            $newSupplier->title = $supplierTitle;
             $newSupplier->source = $source;
             switch($type) {
                 case 'rim':
@@ -97,7 +97,16 @@ class ItemImport extends Model
                 'holesDistance' => $line[$holesDistanceColumn]
             ]);
 
-            $item->save();
+            if (Item::where('itemnumber', $item->itemnumber)->where('supplier', $item->supplier)->exists()) {
+                $existingItem = Item::where('itemnumber', $item->itemnumber)->where('supplier', $item->supplier)->first();
+                $existingItem->costprice = $item->costprice;
+                $existingItem->retailprice = $item->retailprice;
+                $existingItem->stock = $item->stock;
+
+                $existingItem->save();
+            } else {
+                $item->save();
+            }
         }
 
         fclose($itemCSV);

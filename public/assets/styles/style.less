@@ -1,5 +1,6 @@
 /* Color variables */
 @gray-light:    #fefefe;
+@gray-lighter: #e1e1e1;
 @gray:          #cccccc;
 @gray-dark:     #636b6f;
 
@@ -45,6 +46,12 @@ html, body {
     &:hover {
         color: @orange-light;
     }
+} input[type='submit'] {
+    border: none!important;
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }
 
 /* Bootstrap resets */
@@ -82,7 +89,7 @@ nav {
         font-size: 1.8rem;
     }
 }
-#navbar-identity-logo {
+#navbar-identity-logo, #navbar-basket-image {
     height: 3rem;
 }
 #navbar-home-logo {
@@ -99,6 +106,9 @@ nav {
     text-align: center;
     height: 50px;
     width: 50px;
+}
+#navbar-menu-button, #navbar-basket {
+    margin: .5rem;
 }
 #navbar-toggle {
     font-size: 1.4rem;
@@ -121,6 +131,32 @@ nav {
 }
 .navbar-to-website {
     margin: 5px;
+}
+.basket-count {
+    color: @gray-light;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 22px;
+    height: 22px;
+    width: 22px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: @gray-dark;
+    border-radius: 50%;
+}
+
+/* Basket styles */
+#basket-table {
+
+    thead td {
+        color: @gray-light;
+        background-color: @gray-dark;
+    }
+    tr:nth-child(2n){
+        background-color: @gray-lighter;
+    }
 }
 
 /* Content styling*/

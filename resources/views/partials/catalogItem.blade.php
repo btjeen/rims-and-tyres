@@ -14,32 +14,46 @@
                     <table class="specification-table w-100">
                         <!-- Rim data layout -->
                         @if($item->type === 'rim')
-                                <tr>
-                                    <td>Diameter</td>
-                                    <td>{{ json_decode($item['extras'], true)['diameter'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Width</td>
-                                    <td>{{ json_decode($item['extras'], true)['width'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Centre bore</td>
-                                    <td>{{ json_decode($item['extras'], true)['cb'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>PCD</td>
-                                    <td>{{ json_decode($item['extras'], true)['holesAmount'].'x'.json_decode($item['extras'], true)['holesDistance'] }}</td>
-                                </tr>
-                                <tr>
+                            <tr>
+                                <td>Diameter</td>
+                                <td>{{ json_decode($item['extras'], true)['diameter'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Width</td>
+                                <td>{{ json_decode($item['extras'], true)['width'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Centre bore</td>
+                                <td>{{ json_decode($item['extras'], true)['cb'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>PCD</td>
+                                <td>{{ json_decode($item['extras'], true)['holesAmount'].'x'.json_decode($item['extras'], true)['holesDistance'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Price</td>
+                                <td>{{ $item->retailprice }},-</td>
+                            </tr>
 
                         <!-- Tyre data layout -->
                         @elseif($item->type === 'tyre')
-                            @foreach(json_decode($item['extras']) as $extraKey => $extraValue)
-                                <tr>
-                                    <td>{{ strtoupper($extraKey) }}</td>
-                                    <td>{{ $extraValue }}</td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td>Diameter</td>
+                                <td>{{ json_decode($item['extras'], true)['diameter'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Width</td>
+                                <td>{{ json_decode($item['extras'], true)['width'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Height</td>
+                                <td>{{ json_decode($item['extras'], true)['height'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Price</td>
+                                <td>{{ $item->retailprice }},-</td>
+                            </tr>
+
 
                         <!-- Reg. item data layout -->
                         @else
@@ -54,9 +68,13 @@
                 </div>
             @endif
         </div>
-        <a href="#" class="btn btn-primary m-1 mb-2 mt-auto">Add to basket</a>
+        <form action="{{ route('orders.addToBasket') }}" method="POST">
+            @csrf
+            <input type="hidden" name="itemId" value="{{ $item->id }}"/>
+            <input type="submit" value="Add to basket" class="btn btn-primary mb-2 mt-auto w-100">
+        </form>
         @if($item['type'] === 'rim' || $item['type'] === 'tyre')
-            <a href="/items/show/{{  $item['id'] }}" class="btn btn-primary m-1 mt-auto">
+            <a href="/items/show/{{  $item['id'] }}" class="btn btn-primary p-1 mt-auto">
                 @if($item['type'] === 'rim')
                     Buy with tyre
                 @elseif($item['type'] === 'tyre')

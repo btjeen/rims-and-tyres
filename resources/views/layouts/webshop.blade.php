@@ -15,22 +15,29 @@
                         <div id="navbar-identity-title" class="pr-2">
                             Rims and Tyres
                         </div>
-                        <img id="navbar-identity-logo" class="pr-1 pl-1 rotate d-none d-sm-block" src="{{ url('/assets/images/rat_logo.svg') }}">
+                        <img id="navbar-identity-logo" class="pr-2 pl-2 rotate d-none d-sm-block" src="{{ url('/assets/images/rat_logo.svg') }}">
                     </div>
                     <!-- /#navbar-identity -->
 
-                    <div id="navbar-basket" class="col-2">
-                        <!-- TODO: Implement basket here -->
-                    </div>
-                    <!-- /#navbar-basket -->
 
-                    <div id="navbar-menu" class="col-2 align-items-center">
-                        <div id="navbar-menu-button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-toggle" aria-expanded="false" aria-controls="navbar">
-                            <span class="pointer-no-highlight">☰</span>
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+
+                    <div id="navbar-menu" class="col-4">
+                        <div class="buttons-wrap d-flex justify-content-end align-items-center">
+                            <div id="navbar-basket" class="d-inline-block position-relative">
+                                <span class="basket-count">{{ Session::has('cart') ? Session::get('cart')->itemsQuantity : 0 }}</span>
+                                <a href="{{ route('orders.index') }}">
+                                    <img id="navbar-basket-image" src="{{ url('/assets/images/basket.svg') }}">
+                                </a>
+                            </div>
+                            <!-- /#navbar-basket -->
+                            <div id="navbar-menu-button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-toggle" aria-expanded="false" aria-controls="navbar">
+                                <span class="pointer-no-highlight">☰</span>
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </div>
+                            <!-- /#navbar-menu-button -->
                         </div>
                         <div id="navbar-toggle" class="col-12 collapse">
                             <ul class="nav navbar-nav">
@@ -39,7 +46,6 @@
                                 <li><a href="{{ route('items.list', 'tyres') }}">Tyres</a></li>
                             </ul>
                         </div><!--/.navbar-toggle -->
-
                     </div>
                     <!-- /#navbar-menu -->
                 </div>

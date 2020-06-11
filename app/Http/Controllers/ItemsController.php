@@ -28,13 +28,22 @@ class ItemsController extends Controller
             $items = Item::all();
         }
 
-        return view('items.list', ['items' => $items]);
+        return view('items.list', ['title' => $type,'items' => $items]);
     }
 
     public function show($id) {
         // Make query for getting single item
         $item = Item::where('id', $id)->first();
+        array($relatedItems = '');
+        switch ($item) {
+            case $item->type === 'rim':
+                $relatedItems = Item::where('type', 'tyre')->take(4);
+                break;
+            case $item->type === 'tyre':
+                $relatedItems = Item::where('type', 'rim')->take(4);
+                break;
+        }
 
-        return view('items.show', ['item' => $item]);
+        return view('items.show', ['item' => $item, 'relatedItems' => $relatedItems]);
     }
 }
