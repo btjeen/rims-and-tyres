@@ -54,14 +54,14 @@ class AdminsController extends Controller
         ]);
     }
 
-    public function import() {
+    public function import(Request $request) {
         $supplier = request('supplier');
         $type = request('type');
-        $source = request('source');
+        $source = $request->file('source');
 
         ItemImport::store_data($supplier, $type, $source);
 
-        return redirect('/admin?tab=import');
+        return redirect(route('admin.index'));
     }
 
     public function destroy() {
@@ -93,6 +93,6 @@ class AdminsController extends Controller
         // Delete items from the supplier of the specified type
         Item::where('supplier', $supplierId)->where('type', $type)->delete();
 
-        return redirect('/admin?tab=delete');
+        return redirect(route('admin.index','?tab=delete'));
     }
 }

@@ -9,13 +9,13 @@
         <!-- Nav tabs start -->
         <ul class="nav nav-tabs nav-justified col-12 pr-0">
             <li class="nav-item">
-                <a class="nav-link {{ $tab ==  'stats' || $tab == '' ? 'active' : ''  }}" data-toggle="tab" href="#stats">Stats</a>
+                <a class="nav-link {{ $tab == 'stats' || $tab == '' ? 'active' : ''  }}" data-toggle="tab" href="#stats">Stats</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ $tab ==  'import' ? 'active' : ''  }}" data-toggle="tab" href="#import">Import</a>
+                <a class="nav-link {{ $tab == 'import' ? 'active' : ''  }}" data-toggle="tab" href="#import">Import</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ $tab ==  'delete' ? 'active' : ''  }}" data-toggle="tab" href="#delete">Delete</a>
+                <a class="nav-link {{ $tab == 'delete' ? 'active' : ''  }}" data-toggle="tab" href="#delete">Delete</a>
             </li>
         </ul>
         <!-- Nav tabs end -->
@@ -23,7 +23,7 @@
         <!-- Tab panes start -->
         <div class="tab-content col-12 mb-4 p-4">
             <!-- Stats tab start -->
-            <div class="tab-pane container {{ $tab ==  'stats' || $tab == '' ? 'active' : 'fade'  }}" id="stats">
+            <div class="tab-pane container {{ $tab == 'stats' || $tab == '' ? 'active' : 'fade'  }}" id="stats">
                 <div class="row">
                     <div class="col-12">
                         <h2>Active items</h2>
@@ -51,11 +51,12 @@
             <!-- Import tab start -->
             <div class="tab-pane container {{ $tab ==  'import' ? 'active' : 'fade'  }}" id="import">
                 <div class="row">
+                    <!-- Import form start -->
                     <div class="col-12 col-md-6">
                         <h2>Import items</h2>
                         <p>To import new items, or update existing items - simply fill in the form below!</p>
                         <hr class="pb-3"/>
-                        <form action="{{ route('admin.index') }}" method="POST">
+                        <form action="{{ route('admin.index') }}" method="POST"  enctype="multipart/form-data">
                             @csrf
                             <label for="supplier">Supplier title (case sensitive)</label>
                             <br />
@@ -81,6 +82,9 @@
                             <br />
                         </form>
                     </div>
+                    <!-- Import form start -->
+
+                    <!-- Active suppliers start -->
                     <div class="col-12 col-md-6">
                         <h2>Currently active suppliers</h2>
                         <hr class="pb-3"/>
@@ -114,6 +118,7 @@
                             <p class="p-2 pl-3 pr-3 m-1">You can add items by using the import function.</p>
                         @endif
                     </div>
+                    <!-- Active suppliers end -->
                 </div>
             </div>
             <!-- Import tab end -->

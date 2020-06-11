@@ -4,6 +4,7 @@ namespace App\RATCustom;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use App\Item;
 use App\Supplier;
 
@@ -15,14 +16,10 @@ class ItemImport extends Model
 
     public static function store_data($supplier, $type, $source) {
 
-        // Get all item data
-        $itemLines = str_getcsv(file_get_contents($source));
-
-        if (exists(Supplier::select('id')->where('title', $supplier)->get())){
-            // If the supplier already exists, get the id of it
-            $supplierId = Supplier::select('id')->where('title', $supplier)->get();
+        // Update supplier if it exist, otherwise create a new one with the given values
+        if (Supplier::select('id')->where('title', $supplier)->exists()){
+            $supplierId = Supplier::where('title', $supplier)->first()->value('id');
         } else {
-            // If the set supplier does not exist, create a new one with the given values
             $newSupplier = new Supplier();
             $newSupplier->title = $supplier;
             $newSupplier->source = $source;
@@ -38,37 +35,71 @@ class ItemImport extends Model
                     break;
             }
 
-            $supplierId = Supplier::create($newSupplier)->id;
+            $newSupplier->save();
+            $supplierId = $newSupplier->id;
         }
 
+        // Get all item data
+        $itemCSV = fopen($source, "r");
+        $itemKeys = fgetcsv($itemCSV, 0, ";");
 
-        foreach ($itemLines as $line) {
+        // Get indexes of possible values
+        $itemnumberColumn =     array_search('Itemnumber',$itemKeys,true);
+        $brandColumn =          array_search('Brand',$itemKeys,true);
+        $modelColumn =          array_search('Model',$itemKeys,true);
+        $colorColumn =          array_search('Color',$itemKeys,true);
+        $descriptionColumn =    array_search('Description',$itemKeys,true);
+        $seasonColumn =         array_search('Season',$itemKeys,true);
+        $diameterColumn =       array_search('Diameter',$itemKeys,true);
+        $widthColumn =          array_search('Width',$itemKeys,true);
+        $holesColumn =          array_search('Holes',$itemKeys,true);
+        $holesDistanceColumn =  array_search('Holes distance',$itemKeys,true);
+        $etColumn =             array_search('ET',$itemKeys,true);
+        $cbColumn =             array_search('CB',$itemKeys,true);
+        $retailColumn =         array_search('Retail price',$itemKeys,true);
+        $costColumn =           array_search('Cost price',$itemKeys,true);
+        $imageColumn =          array_search('Image',$itemKeys,true);
+        $stockColumn =          array_search('Stock',$itemKeys,true);
+
+        // Remove the header row
+        unset($itemCSV[0]);
+
+        // Loop through all lines, and add items
+        for($idx = 0; $line = fgetcsv($itemCSV, 0, ";"); $idx++){
             $item = new Item();
 
-            $item->title = ucfirst($line['Brand'].' '.$line['Model'].' '.$line['Color']);
-            $item->itemnumber = $line['Itemnumber'];
-            $item->brand = $line['Brand'];
-            $item->model = $line['Model'];
-            $item->color = $line['Color'];
-            $item->costprice = $line['Costprice'];
-            $item->retailprice = $line['Retail'];
-            $item->image = $line['Image'];
+            print_r($item[$imageColumn]);
+            // If image field is empty, set placeholder image
+            if ($line[$imageColumn] === '') {
+                $line[$imageColumn] = url('/assets/images/image_missing.jpg');
+            }
+
+            // Transfer all the information to the Item object from the CSV line
+            $item->title = ucfirst($line[$brandColumn].' '.$line[$modelColumn].' '.$line[$colorColumn]);
+            $item->itemnumber = $line[$itemnumberColumn];
+            $item->stock = $stockColumn;
+            $item->brand = $line[$brandColumn];
+            $item->model = $line[$modelColumn];
+            $item->color = $line[$colorColumn];
+            $item->costprice = $line[$costColumn];
+            $item->retailprice = $line[$retailColumn];
+            $item->image = $line[$imageColumn];
             $item->type = $type;
-            $item->description = $line['Description'];
+            $item->description = $line[$descriptionColumn];
             $item->supplier = $supplierId;
             $item->extras = json_encode([
-                'season' => $line['Season'],
-                'diameter' => $line['Diameter'],
-                'width' => $line['Width'],
-                'centerbore' => $line['CB'],
-                'ET' => $line['ET'],
-                'holesAmount' => $line['Holes'],
-                'holesDistance' => $line['Hole distance']
-                ]);
+                'season' => $line[$seasonColumn],
+                'diameter' => $line[$diameterColumn],
+                'width' => $line[$widthColumn],
+                'cb' => $line[$cbColumn],
+                'et' => $line[$etColumn],
+                'holesAmount' => $line[$holesColumn],
+                'holesDistance' => $line[$holesDistanceColumn]
+            ]);
 
             $item->save();
         }
 
-
+        fclose($itemCSV);
     }
 }
