@@ -27,11 +27,7 @@
                                         <button type="button" class="btn">{{ __('Logout') }}</button>
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-                        @else
-                            <a class="nav-link" href="{{ route('login') }}">
-                                <button type="button" class="btn">{{ __('Login') }}</button>
-                            </a>
-                        @endguest
+                        @endauth
                     </div>
 
                     <div id="navbar-menu" class="d-flex justify-content-end align-items-center">

@@ -60,12 +60,12 @@
                             @csrf
                             <label for="supplier">Supplier title (case sensitive)</label>
                             <br />
-                            <input id="supplier" name="supplier" type="text"/>
+                            <input required="required" id="supplier" name="supplier" type="text"/>
                             <br />
                             <br />
                             <label for="type">Product type</label>
                             <br />
-                            <select id="type" name="type">
+                            <select required="required" id="type" name="type">
                                 <option value="rim">Rims</option>
                                 <option value="tyre">Tyres</option>
                                 <option value="accessory">Accessories</option>
@@ -74,7 +74,7 @@
                             <br />
                             <label for="source">File</label>
                             <br />
-                            <input id="source" name="source" type="file"/>
+                            <input required="required" id="source" name="source" type="file"/>
                             <br />
                             <br />
                             <br />

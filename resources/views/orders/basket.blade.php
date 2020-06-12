@@ -38,10 +38,10 @@
             <div class="row pb-4">
                 <div class="col-12 col-md-8 m-auto pb-4">
                     <label for="name">Name:</label><br />
-                    <input type="text" name="name" id="name"/><br />
+                    <input required="required" type="text" name="name" id="name"/><br />
                     <br />
                     <label for="address">Address:</label><br />
-                    <input type="text" name="address" id="address"/><br />
+                    <input required="required" type="text" name="address" id="address"/><br />
                     <br />
                 </div>
                 <div class="col12 col-md-8 m-auto d-flex align-items-center justify-content-between">
