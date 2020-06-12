@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row pb-4">
-        <div class="col-8 m-auto pt-4">
+        <div class="col-12 col-md-8 m-auto pt-4">
             <h2>Thanks for your order {{ $name }}!</h2>
             <table id="basket-table" class="w-100">
                 <thead>
@@ -29,7 +29,7 @@
             </div>
             <hr />
         </div>
-        <div class="col-8 m-auto pt-4">
+        <div class="col-12 col-md-8 m-auto pt-4">
             <p>Lean back, while we handle the rest.</p>
             <p>If your order is not correct, please get in touch with us ASAP.</p>
         </div>
