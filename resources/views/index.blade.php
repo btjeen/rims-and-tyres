@@ -8,8 +8,7 @@
     <!-- Banner -->
     <div class="row pb-4">
         <div class="col-12">
-            <div style="width: 100%; height: 0; padding-bottom: 40%; background: #dedede; position: relative;">
-                <p style="font-size: 5rem; width: 100%; text-align: center; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -45%);">Placeholder image</p>
+            <div style="width: 100%; height: 0; padding-bottom: 40%; background-image: url('https://images.unsplash.com/photo-1583314530511-9786292e7f4d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80'); background-size: cover; background-position: center;">
             </div>
         </div>
     </div>

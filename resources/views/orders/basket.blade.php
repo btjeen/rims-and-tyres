@@ -8,7 +8,7 @@
 
     @if(Session::has('cart'))
         <div class="row pb-4">
-            <div class="col-8 m-auto pt-4">
+            <div class="col-12 col-md-8 m-auto pt-4">
                 <h2>Your basket</h2>
                 <table id="basket-table" class="w-100">
                     <thead>
@@ -36,7 +36,7 @@
         <form action="{{ route('orders.checkout') }}" method="POST">
             @csrf
             <div class="row pb-4">
-                <div class="col-8 m-auto pb-4">
+                <div class="col-12 col-md-8 m-auto pb-4">
                     <label for="name">Name:</label><br />
                     <input type="text" name="name" id="name"/><br />
                     <br />
@@ -44,7 +44,7 @@
                     <input type="text" name="address" id="address"/><br />
                     <br />
                 </div>
-                <div class="col-8 m-auto d-flex align-items-center justify-content-between">
+                <div class="col12 col-md-8 m-auto d-flex align-items-center justify-content-between">
                     <a href="{{ route('items.index') }}" class="btn-lg btn-primary">
                         < Continue shopping
                     </a>
@@ -54,7 +54,7 @@
         </form>
     @else
         <div class="row pb-4">
-            <div class="col-8 m-auto pt-4">
+            <div class="col-12 col-md-8 m-auto pt-4">
                 <h2>There are no items in your basket</h2>
                 <p>You can try buying some
                     <a href="{{ route('items.list', 'rims') }}">rims</a>
