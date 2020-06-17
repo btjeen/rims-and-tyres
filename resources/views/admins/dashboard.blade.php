@@ -9,7 +9,7 @@
         <!-- Nav tabs start -->
         <ul class="nav nav-tabs nav-justified col-12 pr-0">
             <li class="nav-item">
-                <a class="nav-link {{ $tab == 'orders' || $tab == '' ? 'active' : ''  }}" data-toggle="tab" href="#orders">Stats</a>
+                <a class="nav-link {{ $tab == 'orders' || $tab == '' ? 'active' : ''  }}" data-toggle="tab" href="#orders">Orders</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $tab == 'stats' ? 'active' : ''  }}" data-toggle="tab" href="#stats">Stats</a>
