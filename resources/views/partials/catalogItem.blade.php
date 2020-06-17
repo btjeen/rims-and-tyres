@@ -78,7 +78,7 @@
                 @if($item['type'] === 'rim')
                     Buy with tyre
                 @elseif($item['type'] === 'tyre')
-                    But with rim
+                    Buy with rim
                 @endif
             </a>
         @endif

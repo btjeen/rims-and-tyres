@@ -12,10 +12,12 @@
             <div class="container">
                 <div class="row pt-3 pb-3">
                     <div id="navbar-identity" class="col-8 d-flex align-items-center">
-                        <div id="navbar-identity-title" class="pr-2">
-                            Rims and Tyres
-                        </div>
-                        <img id="navbar-identity-logo" class="pr-2 pl-2 rotate d-none d-sm-block" src="{{ url('/assets/images/rat_logo.svg') }}">
+                        <a href="{{ route('items.index') }}">
+                            <div id="navbar-identity-title" class="pr-2">
+                                Rims and Tyres
+                            </div>
+                            <img id="navbar-identity-logo" class="pr-2 pl-2 rotate d-none d-sm-block" src="{{ url('/assets/images/rat_logo.svg') }}">
+                        </a>
                     </div>
                     <!-- /#navbar-identity -->
 

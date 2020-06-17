@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
 use App\Item;
 use App\Supplier;
 use App\RATCustom\ItemImport;
@@ -28,8 +29,12 @@ class AdminsController extends Controller
         $tab = request('tab');
 
         $globals = [
-           'itemCount' => Item::count(),
+            'itemCount' => Item::count(),
+            'orderCount' => Order::count(),
+
         ];
+
+        $orderList = Order::get();
 
         $rims = [
             'itemCount' => Item::where('type', 'rim')->count(),
@@ -48,6 +53,7 @@ class AdminsController extends Controller
         return view('admins.dashboard', [
             'tab' => $tab,
             'globals' => $globals,
+            'orders' => $orderList,
             'rims' => $rims,
             'tyres' => $tyres,
             'suppliers' => $suppliers
@@ -61,7 +67,7 @@ class AdminsController extends Controller
 
         ItemImport::store_data($supplier, $type, $source);
 
-        return redirect(route('admin.index'));
+        return redirect(route('admin.index','?tab=stats'));
     }
 
     public function destroy() {

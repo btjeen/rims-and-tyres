@@ -9,7 +9,10 @@
         <!-- Nav tabs start -->
         <ul class="nav nav-tabs nav-justified col-12 pr-0">
             <li class="nav-item">
-                <a class="nav-link {{ $tab == 'stats' || $tab == '' ? 'active' : ''  }}" data-toggle="tab" href="#stats">Stats</a>
+                <a class="nav-link {{ $tab == 'orders' || $tab == '' ? 'active' : ''  }}" data-toggle="tab" href="#orders">Stats</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ $tab == 'stats' ? 'active' : ''  }}" data-toggle="tab" href="#stats">Stats</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $tab == 'import' ? 'active' : ''  }}" data-toggle="tab" href="#import">Import</a>
@@ -22,8 +25,27 @@
 
         <!-- Tab panes start -->
         <div class="tab-content col-12 mb-4 p-4">
+            <!-- Orders tab start -->
+            <div class="tab-pane container {{ $tab == 'orders' || $tab == '' ? 'active' : 'fade'  }}" id="orders">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Orders</h2>
+                        <p>There are currently {{ $globals['orderCount'] }} orders ready to be handled.</p>
+                        <hr class="pb-3"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        @foreach($orders as $order)
+                            @include('partials.orderRow')
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <!-- Orders tab end -->
+
             <!-- Stats tab start -->
-            <div class="tab-pane container {{ $tab == 'stats' || $tab == '' ? 'active' : 'fade'  }}" id="stats">
+            <div class="tab-pane container {{ $tab == 'stats' ? 'active' : 'fade'  }}" id="stats">
                 <div class="row">
                     <div class="col-12">
                         <h2>Active items</h2>

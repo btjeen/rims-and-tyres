@@ -1,6 +1,6 @@
 /* Color variables */
-@gray-light:    #fefefe;
-@gray-lighter: #e1e1e1;
+@white:    #fefefe;
+@gray-light: #e1e1e1;
 @gray:          #cccccc;
 @gray-dark:     #636b6f;
 
@@ -10,7 +10,7 @@
 
 /* Global resets */
 html, body {
-    background-color: @gray-light;
+    background-color: @white;
     color: @gray-dark;
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
@@ -28,7 +28,7 @@ html, body {
         background: @orange;
         &:hover {
             background: @orange-light;
-            cursor: grab;
+            cursor: pointer;
         }
     }
 } h1, h2, h3, h4, h5, h6 {
@@ -56,11 +56,11 @@ html, body {
 
 /* Bootstrap resets */
 .btn-primary {
-    color: @gray-light;
+    color: @white;
     background-color:  @orange;
     border-color:  @orange;
     &:hover {
-        color: @gray-light;
+        color: @white;
         background-color:  @orange-light;
         border-color:  @orange-light;
     }
@@ -73,6 +73,9 @@ html, body {
 .nav-link .active {
     color: #ff900d;
 }
+.card {
+    box-shadow: 0 0 5px #ccc;
+}
 
 /* Navbar styling */
 nav {
@@ -81,7 +84,15 @@ nav {
     min-height: 100px;
     width: 100%;
     z-index: 10;
-    background-color: @gray-light;
+    background-color: @white;
+}
+#navbar-identity a {
+    color: inherit;
+    display: inherit;
+    &:hover {
+        color: inherit;
+        text-decoration: inherit;
+    }
 }
 #navbar-identity-title {
     font-size: 2.4rem;
@@ -133,7 +144,7 @@ nav {
     margin: 5px;
 }
 .basket-count {
-    color: @gray-light;
+    color: @white;
     font-size: 12px;
     font-weight: bold;
     line-height: 22px;
@@ -151,18 +162,18 @@ nav {
 #basket-table {
 
     thead td {
-        color: @gray-light;
+        color: @white;
         background-color: @gray-dark;
     }
     tr:nth-child(2n){
-        background-color: @gray-lighter;
+        background-color: @gray-light;
     }
 }
 
 /* Content styling*/
 .page-content {
-    padding-top: 105px;
-    min-height: calc(~'100vh - 100px');
+    padding-top: 115px;
+    min-height: calc(~'100vh - 75px');
 }
 
 .single-item-image {

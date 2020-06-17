@@ -1,4 +1,4 @@
-<div class="card w-100 p-2 pl-3 pr-3 mb-1">
+<div class="card w-100 p-2 pl-3 pr-3 mb-2">
     <form action="{{ route('admin.index') }}" method="POST" class="d-flex align-items-center justify-content-between">
         @csrf
         @method('DELETE')
